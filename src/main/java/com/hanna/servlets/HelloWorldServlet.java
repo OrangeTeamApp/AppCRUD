@@ -31,9 +31,7 @@ public class HelloWorldServlet extends HttpServlet {
         writer.println("<html>");
         writer.println(
                 "<h1 align=\"center\">" +
-                        "Теория — это когда все известно, но ничего не работает. <br>" +
-                        "Практика — это когда все работает, но никто не знает почему. <br>" +
-                        "Мы же объединяем теорию и практику: ничего не работает и никто не знает почему!<br>" +
+                        "Hello, Java <br>" +
                         "</h1>"
 
 
