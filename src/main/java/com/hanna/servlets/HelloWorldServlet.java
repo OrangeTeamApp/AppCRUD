@@ -31,7 +31,7 @@ public class HelloWorldServlet extends HttpServlet {
         writer.println("<html>");
         writer.println(
                 "<h1 align=\"center\">" +
-                        "Hello, Java!!! <br>" +
+                        "Hello, World!!! <br>" +
                         "</h1>"
 
 
