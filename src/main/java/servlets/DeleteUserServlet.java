@@ -40,7 +40,6 @@ public class DeleteUserServlet extends HttpServlet {
             throws ServletException, IOException {
         JsonObject data = new Gson().fromJson(request.getReader(), JsonObject.class);
         Long id = data.get("id").getAsLong();
-        String errorMessage = null;
         try {
             User user = userDao.findById(id);
             userDao.remove(user);
