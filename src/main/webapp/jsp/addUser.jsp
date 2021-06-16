@@ -17,11 +17,7 @@
 <body>
 
 
-<div class = "userName">
-  <% User currentUser = ((User) (session.getAttribute("currentSessionUser")));%>
 
-  <p><%= currentUser.getFirstName() + " " + currentUser.getLastName() %> (<a href="${pageContext.request.contextPath}/">logout</a>  ) <p>
-</div>
 <div style="text-align: center">
   <h1>Add user</h1>
 </div>

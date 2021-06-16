@@ -20,11 +20,7 @@
 
 <div id="message">
 </div>
-<div class = "userName">
-    <% User currentUser = ((User) (session.getAttribute("currentSessionUser")));%>
 
-    <p><%= currentUser.getFirstName() + " " + currentUser.getLastName() %> (<a href="${pageContext.request.contextPath}/">logout</a>  ) <p>
-</div>
 
 <div class = "addNewUser">
     <a href="addUser.jsp" class="btn btn-success" ><span>Add new user</span></a>
