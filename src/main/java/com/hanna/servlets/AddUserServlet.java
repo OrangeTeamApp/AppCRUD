@@ -76,7 +76,7 @@ public class AddUserServlet extends HttpServlet {
 
         if (errorMessage == null) {
             userDao.create(user);
-            response.sendRedirect(request.getContextPath() + "/jsp/userListuserList.jsp");
+            response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
         }
         else {
             request.setAttribute("message", errorMessage);

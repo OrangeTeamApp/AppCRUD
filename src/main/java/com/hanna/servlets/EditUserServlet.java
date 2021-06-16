@@ -50,7 +50,7 @@ public class EditUserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private User getUser(Long id, String login, String password, String email, String firstName, String lastName, String dateOfBirth, String role) {
+    private User getUser(Long id, String login, String password, String email, String firstName, String lastName, String dateOfBirth) {
         LocalDate date = null;
         User user;
         if(userService.dateFormatValidator(dateOfBirth)) {
@@ -80,13 +80,12 @@ public class EditUserServlet extends HttpServlet {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String dateOfBirth =request.getParameter("dateOfBirth");
-        String role =  request.getParameter("role");
 
         if(password.equals(EMPTY_STRING)) {
             password = userDao.findById(id).getPassword();
         }
 
-        User user = getUser(id, login, password, email, firstName, lastName, dateOfBirth, role);
+        User user = getUser(id, login, password, email, firstName, lastName, dateOfBirth);
         String errorMessage = userService.userFieldsValidation(user);
 
 
