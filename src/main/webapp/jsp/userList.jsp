@@ -1,4 +1,4 @@
-<%@ page import="model.User" %>
+<%@ page import="com.hanna.model.User" %>
 
 
 <!DOCTYPE html>
