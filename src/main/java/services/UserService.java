@@ -1,12 +1,12 @@
-package com.hanna.services;
+package services;
 
-
-import com.hanna.dao.JdbcUserDao;
-import com.hanna.dao.UserDao;
-import com.hanna.model.User;
+import dao.JdbcUserDao;
+import dao.UserDao;
+import model.User;
 
 public class UserService {
     private UserDao userDao = new JdbcUserDao();
+
     private static final String EMPTY_STRING = "";
     private static final String REGEX_FOR_EMAIL = "^[^@\\s]+@[^@\\s\\.]+\\.[^@\\.\\s]+$";
     private static final String REGEX_FOR_DATE = "^((2000|2400|2800|(19|2[0-9](0[48]|[2468][048]|[13579][26])))-02-29)$"

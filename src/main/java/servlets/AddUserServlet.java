@@ -1,10 +1,13 @@
-package com.hanna.servlets;
+package servlets;
 
 
-import com.hanna.dao.JdbcUserDao;
-import com.hanna.dao.UserDao;
-import com.hanna.model.User;
-import com.hanna.services.UserService;
+import dao.JdbcUserDao;
+import dao.UserDao;
+import model.User;
+import services.UserService;
+
+import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,50 +15,39 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.time.LocalDate;
 
-@WebServlet(urlPatterns = { "/editUser" })
-public class EditUserServlet extends HttpServlet {
+
+
+
+@WebServlet(urlPatterns = { "/addUser" })
+public class AddUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String EMPTY_STRING = "";
+
     private UserDao userDao = new JdbcUserDao();
     private UserService userService = new UserService();
 
-
-    public EditUserServlet() {
+    public AddUserServlet() {
         super();
     }
+
+
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Long id = Long.parseLong (request.getParameter("id"));
-        User user = null;
-
-        try{
-            user = userDao.findById(id);
-        } catch (RuntimeException ex) {
-            request.setAttribute("message", "User doesnt exist in system anymore!");
-            request.getRequestDispatcher("/jsp/errorPage.jsp").forward(request, response);
-        }
-
-        HttpSession session = request.getSession(true);
-        session.setAttribute("userToEdit", user);
 
         RequestDispatcher dispatcher = request.getServletContext()
-                .getRequestDispatcher("/jsp/editUser.jsp");
+                .getRequestDispatcher("/jsp/addUser.jsp");
         dispatcher.forward(request, response);
     }
 
-    private User getUser(Long id, String login, String password, String email, String firstName, String lastName, String dateOfBirth) {
+    private User getUser(String login, String password, String email, String firstName, String lastName, String dateOfBirth) {
         LocalDate date = null;
         User user;
-        if(userService.dateFormatValidator(dateOfBirth)) {
+        if (userService.dateFormatValidator(dateOfBirth)) {
             date = LocalDate.parse(dateOfBirth);
-            user = new User(id, login, password);
+            user = new User(login, password);
             user.setEmail(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -70,9 +62,7 @@ public class EditUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        User userToEdit = (User)request.getSession().getAttribute("userToEdit");
-        Long id =Long.parseLong(String.valueOf(userToEdit.getId()));
-
+        String errorMessage = null;
 
         String login =  request.getParameter("login");
         String password =  request.getParameter("password");
@@ -81,16 +71,12 @@ public class EditUserServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String dateOfBirth =request.getParameter("dateOfBirth");
 
-        if(password.equals(EMPTY_STRING)) {
-            password = userDao.findById(id).getPassword();
-        }
-
-        User user = getUser(id, login, password, email, firstName, lastName, dateOfBirth);
-        String errorMessage = userService.userFieldsValidation(user);
+        User user = getUser(login, password, email, firstName, lastName, dateOfBirth);
+        errorMessage = userService.userFieldsValidation(user);
 
 
         if (errorMessage == null) {
-            userDao.update(user);
+            userDao.create(user);
             response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
         }
         else {
@@ -100,4 +86,5 @@ public class EditUserServlet extends HttpServlet {
         }
 
     }
+
 }

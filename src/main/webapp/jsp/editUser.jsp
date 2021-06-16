@@ -1,7 +1,8 @@
-<%@ page import="com.hanna.model.User" %>
+<%@ page import="model.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 
 <!DOCTYPE html>
@@ -77,8 +78,9 @@
                </div>
             </div>
 
+
             <div class="form-group row">
-               <label for="role" class="col-sm-2 col-form-label"></label>
+               <label for="dateOfBirth" class="col-sm-2 col-form-label"></label>
                <div class="col-sm-7">
                   <button type="submit" class="pull-right btn btn-primary">Submit</button>
                </div>
@@ -89,11 +91,7 @@
    </div>
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-     var sel = document.querySelector('#role');
-     var r= '<%=session_role%>';
-     sel.value = r;
-  });
+
 
    $(document).on("keyup", "#confirmPassword", function () {
       if ($('#password').val() == $('#confirmPassword').val()) {

@@ -1,5 +1,5 @@
-<%@ page import="com.hanna.model.User" %>
-
+<%@ page import="model.User" %>
+<%@ taglib prefix = "adminInfo" uri = "/WEB-INF/library.tld"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +21,8 @@
 <div id="message">
 </div>
 
-
 <div class = "addNewUser">
-    <a href="addUser.jsp" class="btn btn-success" ><span>Add new user</span></a>
+    <a href="/jsp/addUser.jsp" class="btn btn-success" ><span>Add new user</span></a>
 </div>
 <div class="container-xl">
     <div class="table-responsive">
@@ -35,32 +34,7 @@
                     </div>
                 </div>
             </div>
-            <table class=\"table table-striped table-hover\">"
-                    <thead>
-                        <tr>
-                            <th>Login</th>
-                            <th>FirstName</th>
-                            <th>LastName</th>
-                            <th>DateOfBirth</th>
-                            <th>Actions</th>
-                        </tr>
-                    /thead>
-            <tbody>
-            <c:forEach var="user" items="${userList}">
-                <tr>
-                    <td> <c:out value="${user.login}" /> </td>
-                    <td> <c:out value="${user.firstName}" /> </td>
-                    <td> <c:out value="${user.lastName}" /> </td>
-                    <td> <c:out value="${user.birthDate}" /> </td>
-                    <td>
-                        <a href=\"/editUser?id=" + user.getId().toString() + "\" class=\"edit\">Edit </a>
-                        <a href=\"#deleteUserModal\" data-id=" + user.getId() + " class=\"open-DeleteUserModal delete\" data-toggle=\"modal\">Delete </a>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-
+            <adminInfo:PrintUsersTable/>
         </div>
     </div>
 </div>

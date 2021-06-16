@@ -1,7 +1,7 @@
-package com.hanna.dao;
+package dao;
 
-import com.hanna.exception.DbException;
-import com.hanna.model.User;
+import exception.DbException;
+import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,6 @@ import java.util.List;
 
 public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
 
-
     private static final String SQL_INSERT_USER = "INSERT INTO users (login, password, email, first_name, last_name, birth_day) "
             + "VALUES (? , ?, ?, ?, ?, ?)";
 
@@ -21,7 +20,7 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
             + "SET login = ?, password = ?, email = ?, first_name = ?, last_name = ?, birth_day = ? "
             + "WHERE id = ? ";
 
-    private static final String SQL_DELETE_USER = "DELETE users WHERE id = ?";
+    private static final String SQL_DELETE_USER = "DELETE FROM users WHERE id = ?";
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM users ";
     private static final String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ? ";
     private static final String SQL_FIND_USER_BY_EMAIL = "SELECT * FROM users WHERE email = ? ";
@@ -50,8 +49,6 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
         } catch (SQLException throwables) {
             throw new DbException(throwables.getMessage());
         }
-
-
     }
 
     public void update(User user) {

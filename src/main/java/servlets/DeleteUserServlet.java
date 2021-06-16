@@ -1,10 +1,10 @@
-package com.hanna.servlets;
+package servlets;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.hanna.dao.JdbcUserDao;
-import com.hanna.dao.UserDao;
-import com.hanna.model.User;
+import dao.JdbcUserDao;
+import dao.UserDao;
+import model.User;
 
 import java.io.IOException;
 
@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDao userDao = new JdbcUserDao();
-
 
     public DeleteUserServlet() {
         super();

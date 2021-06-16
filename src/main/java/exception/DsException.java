@@ -1,4 +1,4 @@
-package com.hanna.exception;
+package exception;
 
 public class DsException extends RuntimeException {
 

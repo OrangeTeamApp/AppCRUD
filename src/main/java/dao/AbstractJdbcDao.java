@@ -1,6 +1,6 @@
-package com.hanna.dao;
+package dao;
 
-import com.hanna.pool.PoolFactory;
+import pool.PoolFactory;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-<%@ page import="com.hanna.model.User" %>
+<%@ page import="model.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -15,7 +15,6 @@
   <style><%@include file="/css/style.css"%></style>
 </head>
 <body>
-
 
 
 <div style="text-align: center">
@@ -77,8 +76,9 @@
           </div>
         </div>
 
+
         <div class="form-group row">
-          <label for="role" class="col-sm-2 col-form-label"></label>
+          <label for="dateOfBirth" class="col-sm-2 col-form-label"></label>
           <div class="col-sm-7">
             <button type="submit" class="pull-right btn btn-primary">Submit</button>
           </div>

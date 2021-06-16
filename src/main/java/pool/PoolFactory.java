@@ -1,5 +1,5 @@
-package com.hanna.pool;
-import com.hanna.exception.DsException;
+package pool;
+import exception.DsException;
 import org.apache.commons.dbcp2.BasicDataSource;
 import java.io.IOException;
 import java.io.InputStream;

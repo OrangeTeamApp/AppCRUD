@@ -1,6 +1,6 @@
-package com.hanna.dao;
+package dao;
 
-import com.hanna.model.User;
+import model.User;
 
 import java.util.List;
 

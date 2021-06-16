@@ -1,4 +1,4 @@
-package com.hanna.model;
+package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -83,12 +83,13 @@ public class User {
     }
 
 
+
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", login='" + login + '\''
                 + ", password='" + password + '\'' + ", email='" + email + '\''
                 + ", firstName='" + firstName + '\'' + ", lastName='" + lastName
-                + '\'' + ", birthDate=" + birthDate + '}';
+                + '\'' + ", birthDate=" + birthDate  + '}';
     }
 
     @Override
