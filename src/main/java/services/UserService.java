@@ -13,7 +13,7 @@ public class UserService {
             + "|^(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
             + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
     private static final String REGEX_FOR_LOGIN = "^[a-zA-Z][a-zA-z0-9]*$";
-    private static final String REGEX_FOR_NAME = "/^[a-zA-Z '.-]*$/";
+    private static final String REGEX_FOR_NAME = "^[a-zA-Z '.-]*$";
 
 
     private boolean fieldsAreRequiredValidator(User user) {
