@@ -3,6 +3,7 @@ package servlets;
 
 import dao.JdbcUserDao;
 import dao.UserDao;
+import exception.FormatDataException;
 import model.User;
 import services.UserService;
 
@@ -85,18 +86,21 @@ public class EditUserServlet extends HttpServlet {
         }
 
         User user = getUser(id, login, password, email, firstName, lastName, dateOfBirth);
-        String errorMessage = userService.userFieldsValidation(user);
 
 
-        if (errorMessage == null) {
-            userDao.update(user);
-            response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
-        }
-        else {
-            request.setAttribute("message", errorMessage);
+        try {
+            if (user == null) {
+                throw new FormatDataException("incorrect data") ;
+            }
+            userService.userFieldsValidation(user);
+        } catch (FormatDataException ex) {
+            request.setAttribute("message", ex.getMessage());
             request.setAttribute("user", user);
             request.getRequestDispatcher("/jsp/errorPage.jsp").forward(request, response);
         }
+        userDao.update(user);
+        response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
+
 
     }
 }

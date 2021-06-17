@@ -1,4 +1,5 @@
 package pool;
+import exception.DbException;
 import exception.DsException;
 import org.apache.commons.dbcp2.BasicDataSource;
 import java.io.IOException;

@@ -3,11 +3,13 @@ package servlets;
 
 import dao.JdbcUserDao;
 import dao.UserDao;
+import exception.FormatDataException;
 import model.User;
 import services.UserService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.zip.DataFormatException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,7 +64,6 @@ public class AddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String errorMessage = null;
 
         String login =  request.getParameter("login");
         String password =  request.getParameter("password");
@@ -72,18 +73,21 @@ public class AddUserServlet extends HttpServlet {
         String dateOfBirth =request.getParameter("dateOfBirth");
 
         User user = getUser(login, password, email, firstName, lastName, dateOfBirth);
-        errorMessage = userService.userFieldsValidation(user);
 
 
-        if (errorMessage == null) {
-            userDao.create(user);
-            response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
-        }
-        else {
-            request.setAttribute("message", errorMessage);
+        try {
+            if (user == null) {
+                throw new FormatDataException("Incorrect date of birth.") ;
+            }
+            userService.userFieldsValidation(user);
+        } catch (FormatDataException ex) {
+            request.setAttribute("message", ex.getMessage());
             request.setAttribute("user", user);
             request.getRequestDispatcher("/jsp/errorPage.jsp").forward(request, response);
         }
+        userDao.create(user);
+        response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
+
 
     }
 

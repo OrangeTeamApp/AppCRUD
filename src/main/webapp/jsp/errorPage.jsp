@@ -15,6 +15,7 @@
 <body>
 <div style="text-align: center;">
  <h3>  ${message} </h3>
+    <p>Click <a href="${pageContext.request.contextPath}/">here</a> to try again</p>
 </div>
 </body>
 
