@@ -26,29 +26,6 @@
       <form method="POST" action="${pageContext.request.contextPath}/addUser">
 
         <div class=" form-group row">
-          <label for="login" class="col-sm-2 col-form-label">Login</label>
-          <div class="col-sm-7">
-            <input type="text" id="login" class="form-control" name="login" required>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="password"  id="password" class="col-sm-2 col-form-label">Password</label>
-          <div class="col-sm-7">
-            <input id = "pass" type="password" class="form-control password" name="password" required >
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label for="confirmPassword"  id="confirmPassword" class="col-sm-2 col-form-label">Password Again</label>
-          <div class="col-sm-7">
-            <input id = "confPass" type="password" class="form-control confirmPassword" name="confirmPassword" >
-            <span id='message'></span>
-          </div>
-        </div>
-
-
-        <div class=" form-group row">
           <label for="email" id="email" class="col-sm-2 col-form-label">Email</label>
           <div class="col-sm-7">
             <input type="text" class="form-control" name="email" required>
@@ -88,28 +65,6 @@
     </div>
   </div>
 </div>
-<script>
-  $(document).on("keyup", "#confirmPassword", function () {
-    if ($('#password').val() == $('#confirmPassword').val()) {
-      $('#message').html('Matching').css('color', 'green');
-    } else
-      $('#message').html('Not Matching').css('color', 'red');
-  });
-
-  $(document).ready(function(){
-    $('body').on("keyup",'#confirmPassword', function(){
-      console.log('keyed');
-    });
-  });
-
-  $('#pass, #confPass').on('keyup', function () {
-    if ($('#pass').val() == $('#confPass').val()) {
-      $('#message').html('Matching').css('color', 'green');
-    } else
-      $('#message').html('Not Matching').css('color', 'red');
-  });
-
-</script>
 </body>
 </html>
 

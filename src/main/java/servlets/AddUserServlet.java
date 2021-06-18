@@ -9,7 +9,6 @@ import services.UserService;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.zip.DataFormatException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -44,12 +43,12 @@ public class AddUserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private User getUser(String login, String password, String email, String firstName, String lastName, String dateOfBirth) {
+    private User getUser(String email, String firstName, String lastName, String dateOfBirth) {
         LocalDate date = null;
         User user;
         if (userService.dateFormatValidator(dateOfBirth)) {
             date = LocalDate.parse(dateOfBirth);
-            user = new User(login, password);
+            user = new User();
             user.setEmail(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -64,15 +63,12 @@ public class AddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-        String login =  request.getParameter("login");
-        String password =  request.getParameter("password");
         String email =  request.getParameter("email");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String dateOfBirth =request.getParameter("dateOfBirth");
 
-        User user = getUser(login, password, email, firstName, lastName, dateOfBirth);
+        User user = getUser(email, firstName, lastName, dateOfBirth);
 
 
         try {

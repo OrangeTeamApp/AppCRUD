@@ -50,12 +50,12 @@ public class EditUserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private User getUser(Long id, String login, String password, String email, String firstName, String lastName, String dateOfBirth) {
+    private User getUser(Long id, String email, String firstName, String lastName, String dateOfBirth) {
         LocalDate date = null;
         User user;
         if(userService.dateFormatValidator(dateOfBirth)) {
             date = LocalDate.parse(dateOfBirth);
-            user = new User(id, login, password);
+            user = new User(id);
             user.setEmail(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
@@ -73,19 +73,12 @@ public class EditUserServlet extends HttpServlet {
         User userToEdit = (User)request.getSession().getAttribute("userToEdit");
         Long id =Long.parseLong(String.valueOf(userToEdit.getId()));
 
-
-        String login =  request.getParameter("login");
-        String password =  request.getParameter("password");
         String email =  request.getParameter("email");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String dateOfBirth =request.getParameter("dateOfBirth");
 
-        if(password.equals(EMPTY_STRING)) {
-            password = userDao.findById(id).getPassword();
-        }
-
-        User user = getUser(id, login, password, email, firstName, lastName, dateOfBirth);
+        User user = getUser(id, email, firstName, lastName, dateOfBirth);
 
 
         try {

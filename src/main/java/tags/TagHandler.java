@@ -27,7 +27,6 @@ public class TagHandler extends TagSupport {
         table.append("<table class=\"table table-striped table-hover\">");
         table.append("<thead>\n" );
         table.append("<tr>\n" );
-        table.append("<th>Login</th>\n");
         table.append("<th>FirstName</th>\n");
         table.append("<th>LastName</th>\n" );
         table.append("<th>Age</th>\n" );
@@ -38,7 +37,6 @@ public class TagHandler extends TagSupport {
 
         for (User user : users) {
             table.append("<tr>");
-            table.append("<td>" + user.getLogin() + "</td>");
             table.append("<td>" + user.getFirstName() + "</td>");
             table.append("<td>" + user.getLastName() + "</td>");
             table.append("<td>" + Period.between(user.getBirthDate(), LocalDate.now()).getYears() + "</td>");

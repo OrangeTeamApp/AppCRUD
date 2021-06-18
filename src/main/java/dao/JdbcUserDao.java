@@ -13,17 +13,15 @@ import java.util.List;
 
 public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
 
-    private static final String SQL_INSERT_USER = "INSERT INTO users (login, password, email, first_name, last_name, birth_day) "
-            + "VALUES (? , ?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT_USER = "INSERT INTO users (email, first_name, last_name, birth_day) "
+            + "VALUES (?, ?, ?, ?)";
 
     private static final String SQL_UPDATE_USER = "UPDATE users "
-            + "SET login = ?, password = ?, email = ?, first_name = ?, last_name = ?, birth_day = ? "
+            + "SET email = ?, first_name = ?, last_name = ?, birth_day = ? "
             + "WHERE id = ? ";
 
     private static final String SQL_DELETE_USER = "DELETE FROM users WHERE id = ?";
     private static final String SQL_SELECT_ALL_USERS = "SELECT * FROM users ";
-    private static final String SQL_FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE login = ? ";
-    private static final String SQL_FIND_USER_BY_EMAIL = "SELECT * FROM users WHERE email = ? ";
     private static final String SQL_FIND_USER_BY_ID = "SELECT * FROM users WHERE id = ? ";
 
     public void create(User user) {
@@ -31,12 +29,10 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
              PreparedStatement statement = connection.prepareStatement(SQL_INSERT_USER)) {
             try {
                 connection.setAutoCommit(false);
-                statement.setString(1, user.getLogin());
-                statement.setString(2, user.getPassword());
-                statement.setString(3, user.getEmail());
-                statement.setString(4, user.getFirstName());
-                statement.setString(5, user.getLastName());
-                statement.setDate(6, Date.valueOf(user.getBirthDate()));
+                statement.setString(1, user.getEmail());
+                statement.setString(2, user.getFirstName());
+                statement.setString(3, user.getLastName());
+                statement.setDate(4, Date.valueOf(user.getBirthDate()));
                 statement.executeUpdate();
                 connection.commit();
             } catch (SQLException throwables) {
@@ -56,13 +52,11 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
              PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER)) {
             try {
                 connection.setAutoCommit(false);
-                statement.setString(1, user.getLogin());
-                statement.setString(2, user.getPassword());
-                statement.setString(3, user.getEmail());
-                statement.setString(4, user.getFirstName());
-                statement.setString(5, user.getLastName());
-                statement.setDate(6, Date.valueOf(user.getBirthDate()));
-                statement.setLong(8, user.getId());
+                statement.setString(1, user.getEmail());
+                statement.setString(2, user.getFirstName());
+                statement.setString(3, user.getLastName());
+                statement.setDate(4, Date.valueOf(user.getBirthDate()));
+                statement.setLong(5, user.getId());
                 statement.executeUpdate();
                 connection.commit();
             } catch (SQLException throwables) {
@@ -111,8 +105,7 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
     }
 
     private  User createUser(ResultSet resultSet) throws SQLException {
-        User user = new User(resultSet.getLong("id"), resultSet.getString("login"),
-                resultSet.getString("password"));
+        User user = new User(resultSet.getLong("id"));
         user.setEmail(resultSet.getString("email"));
         user.setFirstName(resultSet.getString("first_name"));
         user.setLastName(resultSet.getString("last_name"));
@@ -120,34 +113,6 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
         return user;
     }
 
-    public User findByLogin(String login) {
-        User result = null;
-        try (Connection connection = createConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_LOGIN)) {
-            statement.setString(1, login);
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            result = createUser(resultSet);
-        } catch (SQLException throwables) {
-            throw new DbException(throwables.getMessage());
-        }
-        return result;
-
-    }
-
-    public User findByEmail(String email) {
-        User result = null;
-        try (Connection connection = createConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_FIND_USER_BY_EMAIL)) {
-            statement.setString(1, email);
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            result = createUser(resultSet);
-        } catch (SQLException throwables) {
-            throw new DbException(throwables.getMessage());
-        }
-        return result;
-    }
 
     public User findById(Long id) {
         User result = null;
