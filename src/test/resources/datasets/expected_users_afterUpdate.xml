@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <users id='1' login='login' password='password' email='email' first_name='firstName' last_name='lastName' birth_day='2019-03-22' role_id='3'/>
+    <users id='2' login='login2' password='newPassword' email='newEmail' first_name='newFirstName' last_name='lastName2' birth_day='2014-03-22' role_id='1'/>
+</dataset>
