@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet(urlPatterns = { "/editUser" })
+@WebServlet(urlPatterns = { "/users/editUser" })
 public class EditUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String EMPTY_STRING = "";
