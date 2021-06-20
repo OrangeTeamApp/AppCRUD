@@ -1,3 +1,5 @@
+package dao;
+
 import config.DBUnitConfig;
 import dao.JdbcUserDao;
 import model.User;
