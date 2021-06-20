@@ -3,6 +3,8 @@ package services;
 import exception.FormatDataException;
 import model.User;
 
+import java.time.LocalDate;
+
 public class UserService {
     private static final String EMPTY_STRING = "";
     private static final String REGEX_FOR_EMAIL = "^[^@\\s]+@[^@\\s\\.]+\\.[^@\\.\\s]+$";
@@ -16,6 +18,13 @@ public class UserService {
     private boolean fieldsAreRequiredValidator(User user) {
         if (user.getFirstName().equals(EMPTY_STRING) || user.getLastName().equals(EMPTY_STRING)
                 || user.getBirthDate() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean dateIsNotFutureData(LocalDate birthDay) {
+        if(birthDay.compareTo(LocalDate.now()) >= 0) {
             return false;
         }
         return true;

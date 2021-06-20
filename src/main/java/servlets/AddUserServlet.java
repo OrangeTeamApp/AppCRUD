@@ -48,6 +48,9 @@ public class AddUserServlet extends HttpServlet {
         User user;
         if (userService.dateFormatValidator(dateOfBirth)) {
             date = LocalDate.parse(dateOfBirth);
+            if(!userService.dateIsNotFutureData(date)) {
+                return null;
+            }
             user = new User();
             user.setEmail(email);
             user.setFirstName(firstName);
