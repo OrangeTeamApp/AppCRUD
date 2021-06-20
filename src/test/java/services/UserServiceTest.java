@@ -34,7 +34,7 @@ public class UserServiceTest {
     @Test
     public void testUserFieldsValidationFailsWithIncorrectEmail() throws FormatDataException {
         thrown.expect(FormatDataException.class);
-        user.setEmail("incorrect@mail.rururu");
+        user.setEmail("incorrectmail.ru");
         thrown.expectMessage("Email is incorrect: " + user.getEmail());
         userService.userFieldsValidation(user);
     }
