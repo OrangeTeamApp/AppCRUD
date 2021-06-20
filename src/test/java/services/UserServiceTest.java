@@ -83,7 +83,7 @@ public class UserServiceTest {
     public void testDateFormatValidatorFailsWithIncorrectDate() {
         UserService userService = new UserService();
         user.setBirthDate(LocalDate.of(2025, 1, 1));
-        boolean isDateCorrect = userService.dateFormatValidator(String.valueOf(user.getBirthDate()));
+        boolean isDateCorrect = userService.dateIsNotFutureData(user.getBirthDate());
         Assert.assertFalse(isDateCorrect);
     }
 
