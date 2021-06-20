@@ -38,11 +38,16 @@ public class UserService {
             day = date.substring(10);
         else day = date.substring(8, 10);
 
-        boolean isYearCorrect = Integer.parseInt(date.substring(0, 4)) <= LocalDate.now().getYear();
-        boolean isMonthCorrect = Integer.parseInt(month) <= LocalDate.now().getMonthValue();
-        boolean isDayCorrect = Integer.parseInt(day) <= LocalDate.now().getDayOfMonth();
+        if (Integer.parseInt(date.substring(0, 4)) < LocalDate.now().getYear())
+            return true;
+        if (Integer.parseInt(date.substring(0, 4)) > LocalDate.now().getYear())
+            return false;
+        if (Integer.parseInt(month) < LocalDate.now().getMonthValue())
+            return true;
+        if (Integer.parseInt(month) > LocalDate.now().getMonthValue())
+            return false;
 
-        return (isYearCorrect && isMonthCorrect && isDayCorrect);
+        return Integer.parseInt(day) <= LocalDate.now().getDayOfMonth();
     }
 
     private boolean nameFormatValidator(String name) {
