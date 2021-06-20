@@ -34,7 +34,7 @@ public class UserServiceTest {
     @Test
     public void testUserFieldsValidationFailsWithIncorrectEmail() throws FormatDataException {
         thrown.expect(FormatDataException.class);
-        user.setEmail("incorrect@mail.rururu");
+        user.setEmail("incorrectmail.rururu");
         thrown.expectMessage("Email is incorrect: " + user.getEmail());
         userService.userFieldsValidation(user);
     }
@@ -82,7 +82,7 @@ public class UserServiceTest {
     @Test
     public void testDateFormatValidatorFailsWithIncorrectDate() {
         UserService userService = new UserService();
-        user.setBirthDate(LocalDate.of(20000, 1, 1));
+        user.setBirthDate(LocalDate.of(2025, 1, 1));
         boolean isDateCorrect = userService.dateFormatValidator(String.valueOf(user.getBirthDate()));
         Assert.assertFalse(isDateCorrect);
     }
