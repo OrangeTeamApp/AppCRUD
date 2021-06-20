@@ -28,26 +28,7 @@ public class UserService {
     }
 
     public boolean dateFormatValidator(String date) {
-        String month = "";
-        if (date.substring(5, 7).charAt(0) == 0)
-            month = date.substring(7);
-        else month = date.substring(5, 7);
-
-        String day = "";
-        if (date.substring(8, 10).charAt(0) == 0)
-            day = date.substring(10);
-        else day = date.substring(8, 10);
-
-        if (Integer.parseInt(date.substring(0, 4)) < LocalDate.now().getYear())
-            return true;
-        if (Integer.parseInt(date.substring(0, 4)) > LocalDate.now().getYear())
-            return false;
-        if (Integer.parseInt(month) < LocalDate.now().getMonthValue())
-            return true;
-        if (Integer.parseInt(month) > LocalDate.now().getMonthValue())
-            return false;
-
-        return Integer.parseInt(day) <= LocalDate.now().getDayOfMonth();
+        return validate(date, REGEX_FOR_DATE);
     }
 
     private boolean nameFormatValidator(String name) {
