@@ -15,7 +15,7 @@ import static org.dbunit.Assertion.assertEqualsIgnoreCols;
 
 
 @RunWith(JUnit4.class)
-public class JdbcUserDaoTestMemBD extends DBUnitConfig {
+public class JdbcUserDaoTest extends DBUnitConfig {
     private JdbcUserDao jdbcUserDao = new JdbcUserDao();
     private static final String SQL_STATEMENT_TO_GET_ALL_USERS = "SELECT * FROM USERS;";
     private static final String EMPTY_STRING = "";

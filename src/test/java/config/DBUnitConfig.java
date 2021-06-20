@@ -12,7 +12,8 @@ import java.io.InputStream;
 
 public class DBUnitConfig extends DataSourceBasedDBTestCase {
 
-    private JdbcUserDao userDao = new JdbcUserDao();
+    private static final JdbcUserDao userDao = new JdbcUserDao();
+
     @Override
     protected DataSource getDataSource() {
         return userDao.getDataSource();
