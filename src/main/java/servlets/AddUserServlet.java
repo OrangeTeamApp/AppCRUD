@@ -76,14 +76,13 @@ public class AddUserServlet extends HttpServlet {
                 throw new FormatDataException("Incorrect date of birth.") ;
             }
             userService.userFieldsValidation(user);
+            userDao.create(user);
+            response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
         } catch (FormatDataException ex) {
             request.setAttribute("message", ex.getMessage());
             request.setAttribute("user", user);
             request.getRequestDispatcher("/jsp/errorPage.jsp").forward(request, response);
         }
-        userDao.create(user);
-        response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
-
 
     }
 

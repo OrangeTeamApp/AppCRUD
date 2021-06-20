@@ -86,14 +86,12 @@ public class EditUserServlet extends HttpServlet {
                 throw new FormatDataException("incorrect data") ;
             }
             userService.userFieldsValidation(user);
+            userDao.update(user);
+            response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
         } catch (FormatDataException ex) {
             request.setAttribute("message", ex.getMessage());
             request.setAttribute("user", user);
             request.getRequestDispatcher("/jsp/errorPage.jsp").forward(request, response);
         }
-        userDao.update(user);
-        response.sendRedirect(request.getContextPath() + "/jsp/userList.jsp");
-
-
     }
 }
