@@ -30,10 +30,10 @@ public class JdbcUserDaoTest extends DBUnitConfig {
             ITable expectedData = expectedDataSet.getTable(TABLE_USERS);
 
             User user = new User(3L);
-            user.setEmail( "email3");
-            user.setFirstName("firstName3");
-            user.setLastName("lastName3");
-            user.setBirthDate(LocalDate.of(2019, 03, 22));
+            user.setEmail( "ivanna23@gmail.com");
+            user.setFirstName("Ivana");
+            user.setLastName("Vera");
+            user.setBirthDate(LocalDate.of(1975, 07, 06));
 
             jdbcUserDao.create(user);
             ITable actualData = getConnection()
@@ -50,10 +50,10 @@ public class JdbcUserDaoTest extends DBUnitConfig {
             ITable expectedData = expectedDataSet.getTable(TABLE_USERS);
 
             User user = new User(2L);
-            user.setEmail("newEmail");
-            user.setFirstName("newFirstName");
-            user.setLastName("lastName2");
-            user.setBirthDate(LocalDate.of(2014, 03, 22));
+            user.setEmail("nastia@mail.ru");
+            user.setFirstName("Anastasia");
+            user.setLastName("Ivanova");
+            user.setBirthDate(LocalDate.of(1996, 11, 17));
 
             jdbcUserDao.update(user);
             ITable actualData = getConnection()
@@ -70,10 +70,10 @@ public class JdbcUserDaoTest extends DBUnitConfig {
             ITable expectedData = expectedDataSet.getTable(TABLE_USERS);
 
             User user = new User(2L);
-            user.setEmail("email2");
-            user.setFirstName("firstName2");
-            user.setLastName("lastName2");
-            user.setBirthDate(LocalDate.of(2019, 03, 22));
+            user.setEmail("nastia@mail.ru");
+            user.setFirstName("Anastasia");
+            user.setLastName("Globova");
+            user.setBirthDate(LocalDate.of(1996, 11, 17));
 
             jdbcUserDao.remove(user);
             ITable actualData = getConnection()
@@ -87,16 +87,16 @@ public class JdbcUserDaoTest extends DBUnitConfig {
     @Test
     public void givenDataSet_whenFindAll_thenReturnsAllUsers() throws Exception {
         User user1 = new User(1L );
-        user1.setEmail("email");
-        user1.setFirstName("firstName");
-        user1.setLastName("lastName");
-        user1.setBirthDate(LocalDate.of(2019, 03, 22));
+        user1.setEmail("ivan.abramov@gmail.com");
+        user1.setFirstName("Ivan");
+        user1.setLastName("Abramov");
+        user1.setBirthDate(LocalDate.of(2001, 01, 22));
 
         User user2 = new User(2L);
-        user2.setEmail("email2");
-        user2.setFirstName("firstName2");
-        user2.setLastName("lastName2");
-        user2.setBirthDate(LocalDate.of(2019, 03, 22));
+        user2.setEmail("nastia@mail.ru");
+        user2.setFirstName("Anastasia");
+        user2.setLastName("Globova");
+        user2.setBirthDate(LocalDate.of(1996, 11, 17));
 
         List<User> expectedData = new ArrayList<>();
         expectedData.add(user1);
@@ -113,10 +113,10 @@ public class JdbcUserDaoTest extends DBUnitConfig {
     public void givenDataSet_whenFindById_thenReturnsMatchingUser() throws Exception {
         Long id = 1L;
         User expectedData = new User(id);
-        expectedData.setEmail("email");
-        expectedData.setFirstName("firstName");
-        expectedData.setLastName("lastName");
-        expectedData.setBirthDate(LocalDate.of(2019, 03, 22));
+        expectedData.setEmail("ivan.abramov@gmail.com");
+        expectedData.setFirstName("Ivan");
+        expectedData.setLastName("Abramov");
+        expectedData.setBirthDate(LocalDate.of(2001, 01, 22));
 
         User actualData = jdbcUserDao.findById(id);
 
