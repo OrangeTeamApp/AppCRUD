@@ -41,7 +41,7 @@ public class TagHandler extends TagSupport {
             table.append("<td>" + user.getLastName() + "</td>");
             table.append("<td>" + Period.between(user.getBirthDate(), LocalDate.now()).getYears() + "</td>");
             table.append("<td>\n");
-            table.append("<a href=\"/editUser?id=" + user.getId().toString() + "\" class=\"edit\">Edit </a>\n");
+            table.append("<a href=\"/users/editUser?id=" + user.getId().toString() + "\" class=\"edit\">Edit </a>\n");
             table.append("<a href=\"#deleteUserModal\" data-id=" + user.getId() + " class=\"open-DeleteUserModal delete\" data-toggle=\"modal\">Delete </a>\n");
             table.append("</td>\n");
             table.append("</tr>");
