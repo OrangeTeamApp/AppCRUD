@@ -66,7 +66,7 @@
 
         $.ajax({
             type: "DELETE",
-            url: '/deleteUser',
+            url: '/users/deleteUser',
             contentType: "application/json",
             data: JSON.stringify({ id: userId }),
             success: function() {

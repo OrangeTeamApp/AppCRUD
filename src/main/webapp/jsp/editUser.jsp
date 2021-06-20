@@ -25,7 +25,7 @@
 <div class="container">
    <div class="card">
       <div class="card-body">
-         <form method="POST" action="${pageContext.request.contextPath}/editUser" >
+         <form method="POST" action="${pageContext.request.contextPath}/users/editUser" >
 
             <div class=" form-group row">
                <label for="email" id="email" class="col-sm-2 col-form-label">Email</label>
