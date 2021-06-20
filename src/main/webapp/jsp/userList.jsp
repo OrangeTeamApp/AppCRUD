@@ -22,7 +22,7 @@
 </div>
 
 <div class = "addNewUser">
-    <a href="/jsp/addUser.jsp" class="btn btn-success" ><span>Add new user</span></a>
+    <a href="${pageContext.request.contextPath}/jsp/addUser.jsp" class="btn btn-success" ><span>Add new user</span></a>
 </div>
 <div class="container-xl">
     <div class="table-responsive">
