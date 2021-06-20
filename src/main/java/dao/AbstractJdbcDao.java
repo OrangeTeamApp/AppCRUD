@@ -4,6 +4,7 @@ import exception.DsException;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -26,6 +27,10 @@ abstract class AbstractJdbcDao {
             throwables.printStackTrace();
             throw new DsException(throwables.getMessage());
         }
+    }
+
+    public DataSource getDataSource() {
+        return defaultConnectionPool;
     }
 
     public Connection createConnection() throws SQLException {
