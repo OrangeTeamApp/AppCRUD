@@ -2,13 +2,11 @@ package services;
 
 import exception.FormatDataException;
 import model.User;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import services.validation.UserValidator;
-import services.validation.Validator;
+import services.handlers.UserValidator;
 
 import java.time.LocalDate;
 

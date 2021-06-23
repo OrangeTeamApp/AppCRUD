@@ -3,8 +3,8 @@ package services.actions;
 import exception.FormatDataException;
 import model.User;
 import org.json.JSONObject;
-import services.validation.UserValidator;
-import services.validation.Validator;
+import services.handlers.UserValidator;
+import services.handlers.Validator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class UpdateUserAction implements Action {
 
-    private static Validator validator = new UserValidator();
+    private static final Validator validator = new UserValidator();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -36,7 +36,7 @@ public class UpdateUserAction implements Action {
             user.setBirthDate(date);
             validator.validate(user);
             userDao.update(user);
-            resp.setStatus(201);
+            resp.setStatus(200);
         } catch (RuntimeException ex) {
             resp.setStatus(500);
         }  catch (FormatDataException ex) {
@@ -44,6 +44,5 @@ public class UpdateUserAction implements Action {
             resp.getWriter().write(ex.getMessage());
             resp.getWriter().flush();
         }
-
     }
 }

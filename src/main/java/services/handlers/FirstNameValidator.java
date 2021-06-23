@@ -1,11 +1,11 @@
-package services.validation;
+package services.handlers;
 
 import exception.FormatDataException;
 import model.User;
 
-public class FirstNameValidator implements Validator{
-    private static final String REGEX_FOR_NAME = "^[a-zA-Z '.-]*$";
+public class FirstNameValidator implements Validator {
 
+    private static final String REGEX_FOR_NAME = "^[a-zA-Z '.-]*$";
     private static Validator nextValidator = new LastNameValidator();
 
     @Override
@@ -14,8 +14,7 @@ public class FirstNameValidator implements Validator{
             if (nextValidator != null) {
                 nextValidator.validate(user);
             }
-        }
-        else {
+        } else {
             throw new FormatDataException("First Name is incorrect: " + user.getFirstName());
         }
     }
