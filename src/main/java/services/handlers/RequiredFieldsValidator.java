@@ -11,7 +11,7 @@ public class RequiredFieldsValidator implements Validator {
     @Override
     public void validate(User user) throws FormatDataException {
         if (!user.getFirstName().equals(EMPTY_STRING) && !user.getLastName().equals(EMPTY_STRING)
-                && !user.getEmail().equals(EMPTY_STRING)) {
+                && !user.getEmail().equals(EMPTY_STRING) && user.getBirthDate() != null) {
             if (nextValidator != null) {
                 nextValidator.validate(user);
             }
