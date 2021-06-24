@@ -21,9 +21,9 @@ public class CreateUserAction implements Action {
         String jsonData = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         JSONObject jsonObj = new JSONObject(jsonData);
         String email = jsonObj.getString("email");
-        String firstname = jsonObj.getString("firstname");
-        String lastname = jsonObj.getString("lastname");
-        String birthday = jsonObj.getString("birthday");
+        String firstname = jsonObj.getString("firstName");
+        String lastname = jsonObj.getString("lastName");
+        String birthday = jsonObj.getString("birthDate");
 
         try {
             User user = new User();
