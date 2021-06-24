@@ -21,8 +21,8 @@ public class ValidateServiceTest {
     public void setUp() {
         user = new User(1L);
         user.setEmail("test@mail.ru");
-        user.setFirstName("Name");
-        user.setLastName("LastName");
+        user.setFirstName("Ivan");
+        user.setLastName("Abramov");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
     }
 
@@ -76,6 +76,22 @@ public class ValidateServiceTest {
         thrown.expect(FormatDataException.class);
         user.setLastName("");
         thrown.expectMessage("Incorrect input data for user. All fields are required! Try again!");
+        validator.validate(user);
+    }
+
+    @Test
+    public void testUserFieldsValidationFailsWithEmptyBirthDate() throws FormatDataException {
+        thrown.expect(FormatDataException.class);
+        user.setBirthDate(null);
+        thrown.expectMessage("Incorrect input data for user. All fields are required! Try again!");
+        validator.validate(user);
+    }
+
+    @Test
+    public void testUserFieldsValidationFailsWithUnmatchedBirthDate() throws FormatDataException {
+        thrown.expect(FormatDataException.class);
+        user.setBirthDate(LocalDate.now().plusWeeks(4L));
+        thrown.expectMessage("Birth date is incorrect: " + user.getBirthDate());
         validator.validate(user);
     }
 

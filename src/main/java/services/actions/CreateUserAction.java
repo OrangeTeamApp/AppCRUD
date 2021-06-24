@@ -3,6 +3,7 @@ package services.actions;
 import exception.FormatDataException;
 import model.User;
 import org.json.JSONObject;
+import services.handlers.DateFormatValidator;
 import services.handlers.UserValidator;
 import services.handlers.Validator;
 
@@ -15,22 +16,24 @@ import java.util.stream.Collectors;
 public class CreateUserAction implements Action {
 
     private static final Validator validator = new UserValidator();
+    private static final DateFormatValidator dateFormatValidator = new DateFormatValidator();
 
     @Override
     public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String jsonData = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         JSONObject jsonObj = new JSONObject(jsonData);
         String email = jsonObj.getString("email");
-        String firstname = jsonObj.getString("firstName");
-        String lastname = jsonObj.getString("lastName");
-        String birthday = jsonObj.getString("birthDate");
+        String firstName = jsonObj.getString("firstName");
+        String lastName = jsonObj.getString("lastName");
+        String birthDate = jsonObj.getString("birthDate");
 
         try {
+            dateFormatValidator.validate(birthDate);
             User user = new User();
-            LocalDate date = LocalDate.parse(birthday);
+            LocalDate date = LocalDate.parse(birthDate);
             user.setEmail(email);
-            user.setFirstName(firstname);
-            user.setLastName(lastname);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
             user.setBirthDate(date);
             validator.validate(user);
             userDao.create(user);
