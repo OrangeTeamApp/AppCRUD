@@ -22,9 +22,9 @@ public class UpdateUserAction implements Action {
         JSONObject jsonObj = new JSONObject(jsonData);
         Long id = Long.parseLong(req.getParameter("id"));
         String email = jsonObj.getString("email");
-        String firstname = jsonObj.getString("firstname");
-        String lastname = jsonObj.getString("lastname");
-        String birthday = jsonObj.getString("birthday");
+        String firstname = jsonObj.getString("firstName");
+        String lastname = jsonObj.getString("lastName");
+        String birthday = jsonObj.getString("birthDate");
 
         try {
             User user = new User();
