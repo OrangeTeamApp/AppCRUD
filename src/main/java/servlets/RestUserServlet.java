@@ -23,9 +23,9 @@ public class RestUserServlet extends HttpServlet {
     public RestUserServlet() {
         actionMap.put("user", new ShowUserAction());
         actionMap.put("list", new ShowUsersListAction());
-        actionMap.put("create", new CreateUserAction());
-        actionMap.put("update", new UpdateUserAction());
-        actionMap.put("delete", new DeleteUserAction());
+        actionMap.put("createUser", new CreateUserAction());
+        actionMap.put("updateUser", new UpdateUserAction());
+        actionMap.put("deleteUser", new DeleteUserAction());
     }
 
 
