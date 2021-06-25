@@ -9,5 +9,6 @@ import java.io.IOException;
 
 public interface Action {
     UserDao userDao = new JdbcUserDao();
+
     void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException;
 }
