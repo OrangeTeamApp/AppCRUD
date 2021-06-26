@@ -1,8 +1,12 @@
 package servlets;
 
-import services.actions.*;
+import services.actions.Action;
+import services.actions.CreateUserAction;
+import services.actions.DeleteUserAction;
+import services.actions.ShowUserAction;
+import services.actions.ShowUsersListAction;
+import services.actions.UpdateUserAction;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,40 +18,38 @@ import java.util.Map;
 @WebServlet(urlPatterns = {"/users"})
 public class RestUserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Map<String, Action> actionMap = new HashMap<String,Action>();
+    private static final Map<String, Action> actionMap = new HashMap<>();
 
     public RestUserServlet() {
-        super();
         actionMap.put("user", new ShowUserAction());
         actionMap.put("list", new ShowUsersListAction());
-        actionMap.put("create", new CreateUserAction());
-        actionMap.put("update", new UpdateUserAction());
-        actionMap.put("delete", new DeleteUserAction());
+        actionMap.put("createUser", new CreateUserAction());
+        actionMap.put("updateUser", new UpdateUserAction());
+        actionMap.put("deleteUser", new DeleteUserAction());
     }
 
 
-
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (req.getParameter("id") != null) {
-            actionMap.get("user").execute(req, resp);
+            actionMap.get(req.getParameter("action")).execute(req, resp);
         } else {
-            actionMap.get("list").execute(req, resp);
+            actionMap.get(req.getParameter("action")).execute(req, resp);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        actionMap.get("create").execute(req, resp);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        actionMap.get(req.getParameter("action")).execute(req, resp);
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        actionMap.get("update").execute(req, resp);
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        actionMap.get(req.getParameter("action")).execute(req, resp);
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        actionMap.get("delete").execute(req, resp);
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        actionMap.get(req.getParameter("action")).execute(req, resp);
     }
 }

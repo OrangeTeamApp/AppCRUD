@@ -4,10 +4,10 @@ import exception.DbException;
 import model.User;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
                 connection.commit();
             } catch (SQLException throwables) {
                 connection.rollback();
-                throw  new SQLException(throwables.getMessage());
+                throw new SQLException(throwables.getMessage());
             } finally {
                 connection.setAutoCommit(true);
             }
@@ -104,7 +104,7 @@ public class JdbcUserDao extends AbstractJdbcDao implements UserDao {
         return userList;
     }
 
-    private  User createUser(ResultSet resultSet) throws SQLException {
+    private User createUser(ResultSet resultSet) throws SQLException {
         User user = new User(resultSet.getLong("id"));
         user.setEmail(resultSet.getString("email"));
         user.setFirstName(resultSet.getString("first_name"));

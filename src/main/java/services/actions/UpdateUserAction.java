@@ -42,7 +42,7 @@ public class UpdateUserAction implements Action {
             resp.setStatus(200);
         } catch (RuntimeException ex) {
             resp.setStatus(500);
-        }  catch (FormatDataException ex) {
+        } catch (FormatDataException ex) {
             resp.setStatus(400);
             resp.getWriter().write(ex.getMessage());
             resp.getWriter().flush();
