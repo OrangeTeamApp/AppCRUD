@@ -1,7 +1,6 @@
 package dao;
 
 import config.DBUnitConfig;
-import dao.JdbcUserDao;
 import model.User;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
@@ -18,7 +17,7 @@ import static org.dbunit.Assertion.assertEqualsIgnoreCols;
 
 @RunWith(JUnit4.class)
 public class JdbcUserDaoTest extends DBUnitConfig {
-    private JdbcUserDao jdbcUserDao = new JdbcUserDao();
+    private HibernateUserDao jdbcUserDao = new HibernateUserDao();
     private static final String SQL_STATEMENT_TO_GET_ALL_USERS = "SELECT * FROM USERS;";
     private static final String EMPTY_STRING = "";
     private static final String TABLE_USERS = "users";

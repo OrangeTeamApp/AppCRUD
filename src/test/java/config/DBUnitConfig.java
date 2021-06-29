@@ -1,5 +1,5 @@
 package config;
-import dao.JdbcUserDao;
+import dao.HibernateUserDao;
 import org.dbunit.DataSourceBasedDBTestCase;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -12,11 +12,11 @@ import java.io.InputStream;
 
 public class DBUnitConfig extends DataSourceBasedDBTestCase {
 
-    private static final JdbcUserDao userDao = new JdbcUserDao();
+    private static final HibernateUserDao userDao = new HibernateUserDao();
 
     @Override
     protected DataSource getDataSource() {
-        return userDao.getDataSource();
+        return null;
     }
 
     @Override
