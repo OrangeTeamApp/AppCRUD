@@ -1,10 +1,14 @@
 package model;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "app_users")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
