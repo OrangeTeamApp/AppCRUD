@@ -1,12 +1,29 @@
-CREATE TABLE IF NOT EXISTS USERS
+CREATE TABLE IF NOT EXISTS APP_USERS
 (
-    `id`         int AUTO_INCREMENT NOT NULL,
-    `email`      varchar(250)       NOT NULL,
-    `first_name` varchar(50)        NOT NULL,
-    `last_name`  varchar(50)        NOT NULL,
-    `birth_day`  date               NOT NULL,
-    PRIMARY KEY (`id`)
-);
+    `id`
+    int
+    AUTO_INCREMENT
+    NOT
+    NULL,
+    `email` varchar
+(
+    256
+) NOT NULL,
+    `first_name` varchar
+(
+    256
+) NOT NULL,
+    `last_name` varchar
+(
+    256
+) NOT NULL,
+    `birth_day` date NOT NULL,
+    PRIMARY KEY
+(
+    `id`
+)
+
+    );
 
 
 

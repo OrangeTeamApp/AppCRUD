@@ -1,0 +1,11 @@
+app_users:
+  - id: 1
+    email: "ivan.abramov@gmail.com"
+    first_name: "Ivan"
+    last_name: "Abramov"
+    birth_day: "2001-01-22"
+  - id: 2
+    email: "nastia@mail.ru"
+    first_name: "Anastasia"
+    last_name: "Ivanova"
+    birth_day: "1996-11-17"
